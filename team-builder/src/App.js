@@ -1,24 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import MemberCard from './MemberCard';
+import MemberForm from './Form';
 import './App.css';
 
 function App() {
+ 
+  const [teamMember, setNewMember] = useState([
+    {
+      id:"1",
+      name:"Lance",
+      email:"lance.email",
+      role:"React Dev"
+    },
+    {
+      id:"2",
+      name:"Ance",
+      email:"ance email",
+      role:"Beact Dev"
+    }
+  ]);
+
+  const addNewMember = member => {
+    const newMember = {
+      id: `${teamMember.length+1}`,
+      name: member.name,
+      email: member.email,
+      role: member.role
+    };
+    setNewMember([...teamMember, newMember]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <MemberForm setNewMember={addNewMember}/>
+      </div>
+      <div className="w-50 m-auto">
+        {teamMember.map(e => ( 
+        <MemberCard key={e.id} name={e.name} email={e.email} role={e.role}/>
+        ))}
+      </div>
+      
     </div>
   );
 }
