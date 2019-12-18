@@ -24,8 +24,16 @@ const MemberForm = props => {
     return (
         <div>
             <form onSubmit={submitForm}>
+
                 <label htmlFor="Name">Name:</label>
                 <input id="name" type="text" placeholder="name" name="name" value={teamMember.name} onChange={handleChanges}/>
+
+                <label htmlFor="Email">Email:</label>
+                <input id="email" type="text" placeholder="email" name="email" value={teamMember.email} onChange={handleChanges}/>
+
+                <label htmlFor="Role">Role:</label>
+                <input id="role" type="text" placeholder="role" name="role" value={teamMember.role} onChange={handleChanges}/>
+                
                 <button type="submit">Add New Member</button>
             </form>
         </div>
